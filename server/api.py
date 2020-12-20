@@ -64,10 +64,12 @@ def changePulseAction():
 @app.route('/setLedsColour', methods=["POST"])
 def setLedsColour():
 
-    global myR, myG, myB
-    
+    global myR, myG, myB, pulseRunning
+
     myR, myG, myB = getColoursFromRequest(request)
-    changeColour(myR, myG, myB)
+
+    if not pulseRunning:
+        changeColour(myR, myG, myB)
 
     return str("OK")
 

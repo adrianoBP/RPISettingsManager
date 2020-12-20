@@ -26,3 +26,16 @@ function SetLedsColour(red, green, blue) {
             console.log(resp.status)
     })
 }
+
+function ChangePulseAction(action) {
+
+    fetch(`${endpointAddress}/changePulseAction`, {
+        method: "POST",
+        body: JSON.stringify({
+            action: action
+        }),
+        headers: {"Content-Type": "application/json"}
+    }).then(resp => {
+            console.log(resp.status)
+    })
+}
