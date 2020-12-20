@@ -1,0 +1,72 @@
+:root {
+    --primary-color: #a036d9;
+    --primary-color-dark: #8423b8;
+    --primary-color-active: #5f1985;
+    --red: #E53935;
+    --red-dark: #D32F2F;
+    --red-active: #B71C1C;
+    --blue: #42A5F5;
+    --blue-dark: #1565C0;
+    --blue-active: #0D47A1;
+    --green: #66BB6A;
+    --green-dark: #2E7D32;
+    --green-active: #1B5E20;
+    --yellow: #FFD54F;
+    --yellow-dark: #FFC107;
+    --yellow-active: #FFA000;
+
+    --text-light: #FFF;
+    --text-dark: #333;
+}
+
+.primary {
+    background-color: var(--primary-color) !important;
+    color: var(--text-light);
+}
+.red {
+    background-color: var(--red) !important;
+    color: var(--text-light);
+}
+.green {
+    background-color: var(--green) !important;
+    color: var(--text-light);
+}
+.blue {
+    background-color: var(--blue) !important;
+    color: var(--text-light);
+}
+.yellow {
+    background-color: var(--yellow) !important;
+    color: var(--text-dark);
+}
+
+button.primary:hover{
+	background-color: var(--primary-color-dark) !important;
+}
+button.primary:active{
+	background-color: var(--primary-color-active) !important;
+}
+button.red:hover{
+	background-color: var(--red-dark) !important;
+}
+button.red:active{
+	background-color: var(--red-active) !important;
+}
+button.green:hover{
+	background-color: var(--green-dark) !important;
+}
+button.green:active{
+	background-color: var(--green-active) !important;
+}
+button.blue:hover{
+	background-color: var(--blue-dark) !important;
+}
+button.blue:active{
+	background-color: var(--blue-active) !important;
+}
+button.yellow:hover{
+	background-color: var(--yellow-dark) !important;
+}
+button.yellow:active{
+	background-color: var(--yellow-active) !important;
+}
