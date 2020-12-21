@@ -10,31 +10,20 @@ from apiHelper import *
 app = flask.Flask(__name__)
 CORS(app)
 
-@app.route('/changePulseColour', methods=["POST"])
-def changePulseColour():
+# TODO: Automatic threshold 
+# TODO: Change threshold calculation 
 
-    global myR, myG, myB
+@app.route('/getCurrentValues', methods=["POST"])
+def getCurrentValues():
+
+    global redHue, greenHue, blueHue, threshold
     
-    myR, myG, myB = getColoursFromRequest(request)
-
-    return str("OK")
-
-@app.route('/changePulseStatus', methods=["POST"])
-def changePulseStatus():
-
-    global pulseRunning
-    
-    req = json.loads(request.data)
-
-    if 'running' in req:
-        pulseRunning = bool(req['running'])
-
-        if not pulseRunning:
-            Thread(target = listen).start()
-
-        return str("OK")
-    else:
-        return "Missing attribute", 400
+    return json.dumps({
+        "red": redHue,
+        "green": greenHue,
+        "blue": blueHue,
+        "threshold": threshold,
+    }), 200
 
 @app.route('/changePulseAction', methods=["POST"])
 def changePulseAction():
@@ -57,23 +46,38 @@ def changePulseAction():
             pulseRunning = False
             clearStrip()
         else:
-            return "Unrecognized action", 400
+            return getFormattedMessage("Unrecognized action", 400)
 
         return "", 204
     else:
-        return "Missing attribute", 406
+        return getFormattedMessage("Missing attribute", 406)
+
+@app.route('/setPulseThreshold', methods=["POST"])
+def setPulseThreshold():
+
+    global threshold
+    
+    req = json.loads(request.data)
+
+    if 'threshold' in req:
+
+        threshold = int(req['threshold'])
+
+        return "", 204
+    else:
+        return getFormattedMessage("Missing attribute", 406)
 
 @app.route('/setLedsColour', methods=["POST"])
 def setLedsColour():
 
-    global myR, myG, myB, pulseRunning
+    global redHue, greenHue, blueHue, pulseRunning
 
-    myR, myG, myB = getColoursFromRequest(request)
+    redHue, greenHue, blueHue = getColoursFromRequest(request)
 
     if not pulseRunning:
-        changeColour(myR, myG, myB)
+        changeColour(redHue, greenHue, blueHue)
 
-    if myR == 0 and myG == 0 and myG == 0 and pulseRunning:
+    if redHue == 0 and greenHue == 0 and blueHue == 0 and pulseRunning:
         pulseRunning = False
         clearStrip()
 
@@ -104,13 +108,13 @@ def listen():
 
     print("Listener started")
 
-    global strip, myR, myG, myB, FORMAT, CHANNELS, RATE, CHUNK, LED_COUNT, pulseRunning
+    global strip, redHue, greenHue, blueHue, FORMAT, CHANNELS, RATE, CHUNK, LED_COUNT, pulseRunning
     
     pulseRunning = True
 
     # Make sure that the pulse will be visible
-    if myR == 0 and myG == 0 and myG == 0:
-        myR = myG = myB = 32
+    if redHue == 0 and greenHue == 0 and blueHue == 0:
+        redHue = greenHue = blueHue = 32
 
     pulseThread = Thread(target = pulse)
     pulseThread.start()
@@ -129,8 +133,8 @@ def listen():
 
         data = stream.read(CHUNK, exception_on_overflow = False)
         rms = audioop.rms(data, 2)
-        if(rms/100 > threshHold):
-            strip.setPixelColor(LED_COUNT-1, Color(myR,myG,myB))
+        if(rms/100 > threshold):
+            strip.setPixelColor(LED_COUNT-1, Color(redHue,greenHue,blueHue))
 
     stream.stop_stream()
     stream.close()

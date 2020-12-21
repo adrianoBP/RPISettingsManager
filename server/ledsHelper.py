@@ -2,8 +2,8 @@ import pyaudio, wave, audioop, argparse, time
 from threading import Thread
 from rpi_ws281x import *
 
-myR = myG = myB = 32
-threshHold = 4
+redHue = greenHue = blueHue = 32
+threshold = 4
 
 CHUNK = 32
 FORMAT = pyaudio.paInt16

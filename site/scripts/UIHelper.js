@@ -1,7 +1,3 @@
-let messageElement = document.getElementById("message");
-let messageIcon = messageElement.getElementsByTagName("i")[0];
-let messageText = messageElement.getElementsByTagName("span")[0];
-
 // TODO: Add message queue
 
 function ShowSuccess(message, duration) {

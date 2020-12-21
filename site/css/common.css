@@ -1,0 +1,135 @@
+:root {
+    --small: 0.5rem;
+    --medium: 1rem;
+    --big: 2rem;
+}
+
+.raised {
+	-webkit-box-shadow: 0 2px 7px 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 2px 7px 0 rgba(0, 0, 0, .2);
+	z-index: 15;
+}
+
+.fill-width {
+	width: 100%;
+}
+
+.margin-small {
+    margin: var(--small) !important;
+}
+
+.margin-small-top {
+    margin-top: var(--small) !important;
+}
+
+.margin-small-right {
+    margin-right: var(--small) !important;
+}
+
+.margin-small-bottom {
+    margin-bottom: var(--small) !important;
+}
+
+.margin-small-left {
+    margin-left: var(--small) !important;
+}
+
+.margin {
+    margin: var(--medium) !important;
+}
+
+.margin-top {
+    margin-top: var(--medium) !important;
+}
+
+.margin-right {
+    margin-right: var(--medium) !important;
+}
+
+.margin-bottom {
+    margin-bottom: var(--medium) !important;
+}
+
+.margin-left {
+    margin-left: var(--medium) !important;
+}
+
+.margin-big {
+    margin: var(--big) !important;
+}
+
+.margin-big-top {
+    margin-top: var(--big) !important;
+}
+
+.margin-big-right {
+    margin-right: var(--big) !important;
+}
+
+.margin-big-bottom {
+    margin-bottom: var(--big) !important;
+}
+
+.margin-big-left {
+    margin-left: var(--big) !important;
+}
+
+.padding-small {
+    padding: var(--small) !important;
+}
+
+.padding-small-top {
+    padding-top: var(--small) !important;
+}
+
+.padding-small-right {
+    padding-right: var(--small) !important;
+}
+
+.padding-small-bottom {
+    padding-bottom: var(--small) !important;
+}
+
+.padding-small-left {
+    padding-left: var(--small) !important;
+}
+
+.padding {
+    padding: var(--medium) !important;
+}
+
+.padding-top {
+    padding-top: var(--medium) !important;
+}
+
+.padding-right {
+    padding-right: var(--medium) !important;
+}
+
+.padding-bottom {
+    padding-bottom: var(--medium) !important;
+}
+
+.padding-left {
+    padding-left: var(--medium) !important;
+}
+
+.padding-big {
+    padding: var(--big) !important;
+}
+
+.padding-big-top {
+    padding-top: var(--big) !important;
+}
+
+.padding-big-right {
+    padding-right: var(--big) !important;
+}
+
+.padding-big-bottom {
+    padding-bottom: var(--big) !important;
+}
+
+.padding-big-left {
+    padding-left: var(--big) !important;
+}

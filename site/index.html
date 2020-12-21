@@ -1,6 +1,7 @@
 <title>Leds Manager</title>
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/colours.css">
+<link rel="stylesheet" href="./css/common.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -41,34 +42,40 @@
     <div class="header">
         Colour change
         <div class="right">
-            <button class="raised primary" onclick="SubmitColor()">Set</button>
-            <button class="raised primary icon" onclick="TurnOffLeds()">
+            <button class="raised primary margin-left" onclick="SubmitColor()">Set</button>
+            <button class="raised primary  margin-left icon" onclick="TurnOffLeds()">
                 <i class="fas fa-power-off"></i>
             </button>
         </div>
     </div>
     <div class="content">
-        <div class="content">
-            <input id="red-slider" class="slider red" type="range" min="0" max="255" value="0">
-            <input id="green-slider" class="slider green" type="range" min="0" max="255" value="0">
-            <input id="blue-slider" class="slider blue" type="range" min="0" max="255" value="0">
+        <div class="content fill-width padding-big">
+            <input id="red-slider" class="slider fill-width red" type="range" min="0" max="255" value="0">
+            <input id="green-slider" class="slider margin-top margin-bottom fill-width green" type="range" min="0"
+                max="255" value="0">
+            <input id="blue-slider" class="slider fill-width blue" type="range" min="0" max="255" value="0">
         </div>
     </div>
 </div>
 
 <div class="card raised">
     <div class="header">
-        Light pulse
+        Pulse
         <div class="right">
-            <button class="raised primary icon" onclick="ChangePulseAction('stop')">
+            <button class="raised primary margin-left icon" onclick="ChangePulseAction('stop')">
                 <i class="fas fa-stop"></i>
             </button>
-            <button class="raised primary icon" onclick="ChangePulseAction('play')">
+            <button class="raised primary margin-left icon" onclick="ChangePulseAction('play')">
                 <i class="fas fa-play"></i>
             </button>
-            <button class="raised primary icon" onclick="ChangePulseAction('pause')">
+            <button class="raised primary margin-left icon" onclick="ChangePulseAction('pause')">
                 <i class="fas fa-pause"></i>
             </button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content fill-width padding-big">
+            <input id="threshold-slider" class="slider fill-width primary" type="range" min="1" max="10" value="0" ontouchend="SetPulseThreshold(this.value)" onmouseup="SetPulseThreshold(this.value)">
         </div>
     </div>
 </div>
@@ -77,13 +84,19 @@
 <!-- TODO: Card: Raspberry CPU/RAM/DISK checker -->
 <!-- TODO: Card: Spotify music manager -->
 
+<!-- TODO: Dark theme -->
+<!-- TODO: Loading defaults animation -->
+
 <div class="message raised" id="message">
     <i></i>
     <span></span>
 </div>
 
 <script src="https://livejs.com/live.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="./scripts/script.js"></script>
-<script src="./scripts/apiHelper.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+<script src="./scripts/UIElements.js"></script>
 <script src="./scripts/UIHelper.js"></script>
+<script src="./scripts/apiHelper.js"></script>
+<script src="./scripts/script.js"></script>
