@@ -29,9 +29,8 @@ def changePulseStatus():
     if 'running' in req:
         pulseRunning = bool(req['running'])
 
-        if pulseRunning:
-            listenerThread = Thread(target = listen)
-            listenerThread.start()
+        if not pulseRunning:
+            Thread(target = listen).start()
 
         return str("OK")
     else:
@@ -47,8 +46,11 @@ def changePulseAction():
     if 'action' in req:
 
         if req['action'] == "play":
-            thread3 = Thread(target = listen)
-            thread3.start()
+            if pulseRunning:
+                return getFormattedMessage("Pulse already running", 299)
+            Thread(target = listen).start()
+        elif not pulseRunning:
+            return getFormattedMessage("Pulse not running", 299)
         elif req['action'] == "pause":
             pulseRunning = False
         elif req['action'] == "stop":
@@ -57,9 +59,9 @@ def changePulseAction():
         else:
             return "Unrecognized action", 400
 
-        return str("OK")
+        return "", 204
     else:
-        return "Missing attribute", 400
+        return "Missing attribute", 406
 
 @app.route('/setLedsColour', methods=["POST"])
 def setLedsColour():
@@ -71,7 +73,11 @@ def setLedsColour():
     if not pulseRunning:
         changeColour(myR, myG, myB)
 
-    return str("OK")
+    if myR == 0 and myG == 0 and myG == 0 and pulseRunning:
+        pulseRunning = False
+        clearStrip()
+
+    return "", 204
 
 def pulse():
 
@@ -101,6 +107,10 @@ def listen():
     global strip, myR, myG, myB, FORMAT, CHANNELS, RATE, CHUNK, LED_COUNT, pulseRunning
     
     pulseRunning = True
+
+    # Make sure that the pulse will be visible
+    if myR == 0 and myG == 0 and myG == 0:
+        myR = myG = myB = 32
 
     pulseThread = Thread(target = pulse)
     pulseThread.start()

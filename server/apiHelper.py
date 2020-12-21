@@ -9,3 +9,11 @@ def getColoursFromRequest(request):
     blue = int(req['blue'] if 'blue' in req else "0")
 
     return red, green, blue
+
+def getFormattedMessage(message, status):
+
+    response = {
+        "message": message
+    }
+
+    return json.dumps(response), status

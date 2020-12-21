@@ -2,9 +2,7 @@ import pyaudio, wave, audioop, argparse, time
 from threading import Thread
 from rpi_ws281x import *
 
-myR = 32
-myG = 32
-myB = 32
+myR = myG = myB = 32
 threshHold = 4
 
 CHUNK = 32

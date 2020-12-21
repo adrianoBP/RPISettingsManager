@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="./css/colours.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 
 <!-- <div class="card raised">
@@ -20,6 +22,17 @@
         <div class="header">Inner title</div>
         <div class="content">
             Content
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="card raised red">
+    <div class="header">
+        TESTING
+        <div class="right">
+            <button class="raised yellow icon" onclick="TestAction('stop')">
+                <i class="fas fa-code"></i>
+            </button>
         </div>
     </div>
 </div> -->
@@ -60,6 +73,17 @@
     </div>
 </div>
 
+<!-- TODO: Card: Light pulse sensibility changer -->
+<!-- TODO: Card: Raspberry CPU/RAM/DISK checker -->
+<!-- TODO: Card: Spotify music manager -->
+
+<div class="message raised" id="message">
+    <i></i>
+    <span></span>
+</div>
+
 <script src="https://livejs.com/live.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="./scripts/script.js"></script>
+<script src="./scripts/apiHelper.js"></script>
+<script src="./scripts/UIHelper.js"></script>

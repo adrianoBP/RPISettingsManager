@@ -64,7 +64,6 @@ button:focus {
 	padding: 1rem;
 	font-size: 120%;
 	font-weight: bold;
-	border-bottom: 1px solid #EFEFEF;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -77,6 +76,10 @@ button:focus {
 .card .content {
 	padding: 1rem;
 	font-size: 100%;
+}
+
+.card > .content {
+	border-top: 1px solid #EFEFEF;
 }
 
 .card .content .header {
@@ -115,19 +118,59 @@ button:focus {
     border: 1px solid #AAA;
 }
 
+/* Message */
+.message {
+
+	position: fixed;
+	
+	left: 0;
+	right: 0;
+
+	margin: auto;
+	padding: 1.5rem;
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+
+	z-index: 9999;
+
+	visibility: hidden;
+	transition: .2s;
+}
+
+.message > i {
+	padding-right: 1rem;
+}
+
+.message > span {
+	margin: auto;
+}
+
+
+/* Small Screen */
 @media only screen and (max-width:600px){
 
 	.card {
 		margin: 0.5em;
 	}
 	
+	.message {
+		width: 95vw;
+		bottom: 1rem
+	}
 }
 
+/* Normal Screen */
 @media only screen and (min-width:600px){
 
-	
 	.card {
 		max-width: 55vw;
 		margin: 0.5em auto;
+	}
+
+	.message {
+		bottom: 2rem;
+		width: 40vw;
 	}
 }

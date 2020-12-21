@@ -12,30 +12,11 @@ function TurnOffLeds() {
     SetLedsColour(0, 0, 0);
 }
 
-function SetLedsColour(red, green, blue) {
+function TestAction(){
 
-    fetch(`${endpointAddress}/setLedsColour`, {
-        method: "POST",
-        body: JSON.stringify({
-            red: red,
-            green: green,
-            blue: blue,
-        }),
-        headers: {"Content-Type": "application/json"}
-    }).then(resp => {
-            console.log(resp.status)
-    })
+    console.log("TEST");
 }
 
-function ChangePulseAction(action) {
-
-    fetch(`${endpointAddress}/changePulseAction`, {
-        method: "POST",
-        body: JSON.stringify({
-            action: action
-        }),
-        headers: {"Content-Type": "application/json"}
-    }).then(resp => {
-            console.log(resp.status)
-    })
+function IsNullOrEmpty(str) {
+    return str === null || str.match(/^ *$/) !== null;
 }
