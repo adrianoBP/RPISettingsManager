@@ -30,7 +30,7 @@ function ShowInfo(message, duration) {
 
 function ShowMessage(message, duration = 6000) {
 
-    messageElement.style.visibility = "visible";
+    messageElement.classList.remove("hidden");
     messageElement.style.opacity = 1;
     messageText.innerHTML = message;
 
@@ -42,6 +42,6 @@ function ShowMessage(message, duration = 6000) {
 
 function HideMessage() {
 
-    messageElement.style.visibility = "hidden";
+    messageElement.classList.add("hidden");
     messageElement.style.opacity = 0;
 }

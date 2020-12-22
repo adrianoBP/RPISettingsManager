@@ -133,3 +133,7 @@
 .padding-big-left {
     padding-left: var(--big) !important;
 }
+
+.hidden {
+    visibility: hidden;
+}

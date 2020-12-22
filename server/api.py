@@ -38,13 +38,13 @@ def changePulseAction():
             if pulseRunning:
                 return getFormattedMessage("Pulse already running", 299)
             Thread(target = listen).start()
+        elif req['action'] == "stop":
+            pulseRunning = False
+            clearStrip()
         elif not pulseRunning:
             return getFormattedMessage("Pulse not running", 299)
         elif req['action'] == "pause":
             pulseRunning = False
-        elif req['action'] == "stop":
-            pulseRunning = False
-            clearStrip()
         else:
             return getFormattedMessage("Unrecognized action", 400)
 

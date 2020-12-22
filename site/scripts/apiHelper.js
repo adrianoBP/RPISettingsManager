@@ -13,23 +13,33 @@ async function SetLedsColour(red, green, blue) {
 
         if (!IsNullOrEmpty(ex.statusCode) && !IsNullOrEmpty(ex.data)) {
             ShowError(ex.data.message)
-        } else {
+        } else if (typeof ex == "string") {
             ShowError(ex)
+        } else {
+            ShowError("SetLedsColour: Unexpected exception")
         }
     }
 }
 
 async function ChangePulseAction(action) {
 
-    fetch(`${endpointAddress}/changePulseAction`, {
-        method: "POST",
-        body: JSON.stringify({
-            action: action
-        }),
-        headers: { "Content-Type": "application/json" }
-    }).then(function (response) {
-        HandleResponse(response)
-    })
+    const request = {
+        action: action
+    }
+
+    try {
+        var response = await MakeRequest(`${endpointAddress}/changePulseAction`, "POST", request);
+        HandleResponse(response);
+    } catch (ex) {
+
+        if (!IsNullOrEmpty(ex.statusCode) && !IsNullOrEmpty(ex.data)) {
+            ShowError(ex.data.message)
+        } else if (typeof ex == "string") {
+            ShowError(ex)
+        } else {
+            ShowError("ChangePulseAction: Unexpected exception")
+        }
+    }
 }
 
 async function SetPulseThreshold(threshold) {
@@ -45,8 +55,10 @@ async function SetPulseThreshold(threshold) {
 
         if (!IsNullOrEmpty(ex.statusCode) && !IsNullOrEmpty(ex.data)) {
             ShowError(ex.data.message)
-        } else {
+        } else if (typeof ex == "string") {
             ShowError(ex)
+        } else {
+            ShowError("SetPulseThreshold: Unexpected exception")
         }
     }
 }
@@ -60,8 +72,10 @@ async function GetCurrentValues() {
 
         if (!IsNullOrEmpty(ex.statusCode) && !IsNullOrEmpty(ex.data)) {
             ShowError(ex.data.message)
-        } else {
+        } else if (typeof ex == "string") {
             ShowError(ex)
+        } else {
+            ShowError("GetCurrentValues: Unexpected exception")
         }
     }
 }
@@ -92,15 +106,6 @@ function MakeRequest(url, method, body = "") {
 
 }
 
-function HandleResponseData(data) {
-
-    if (IsNullOrEmpty(data)) {
-        return;
-    }
-    data = JSON.parse(data)
-    console.log(data);
-}
-
 function HandleResponse(response) {
 
     if (response.statusCode != 204) {
@@ -110,7 +115,7 @@ function HandleResponse(response) {
                 ShowWarning(response.data.message);
             }
             else if (response.statusCode >= 400 && response.statusCode <= 499 && !IsNullOrEmpty(response.data)) {
-                ShowErro(response.data.message);
+                ShowError(response.data.message);
             }
 
         } catch (ex) {
@@ -118,5 +123,3 @@ function HandleResponse(response) {
         }
     }
 }
-
-

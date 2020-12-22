@@ -38,47 +38,52 @@
     </div>
 </div> -->
 
-<div class="card raised">
-    <div class="header">
-        Colour change
-        <div class="right">
-            <button class="raised primary margin-left" onclick="SubmitColor()">Set</button>
-            <button class="raised primary  margin-left icon" onclick="TurnOffLeds()">
-                <i class="fas fa-power-off"></i>
-            </button>
+<div class="container">
+    <div class="card raised">
+        <div class="header">
+            Colour change
+            <div class="right">
+                <button class="raised primary margin-left" onclick="SubmitColor()">Set</button>
+                <button class="raised primary  margin-left icon" onclick="TurnOffLeds()">
+                    <i class="fas fa-power-off"></i>
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content fill-width padding-big">
+                <input id="red-slider" class="slider fill-width red" type="range" min="0" max="255" value="0">
+                <input id="green-slider" class="slider margin-top margin-bottom fill-width green" type="range" min="0"
+                    max="255" value="0">
+                <input id="blue-slider" class="slider fill-width blue" type="range" min="0" max="255" value="0">
+            </div>
         </div>
     </div>
-    <div class="content">
-        <div class="content fill-width padding-big">
-            <input id="red-slider" class="slider fill-width red" type="range" min="0" max="255" value="0">
-            <input id="green-slider" class="slider margin-top margin-bottom fill-width green" type="range" min="0"
-                max="255" value="0">
-            <input id="blue-slider" class="slider fill-width blue" type="range" min="0" max="255" value="0">
+
+    <div class="card raised">
+        <div class="header">
+            Pulse
+            <div class="right">
+                <button class="raised primary margin-left icon" onclick="ChangePulseAction('stop')">
+                    <i class="fas fa-stop"></i>
+                </button>
+                <button class="raised primary margin-left icon" onclick="ChangePulseAction('play')">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="raised primary margin-left icon" onclick="ChangePulseAction('pause')">
+                    <i class="fas fa-pause"></i>
+                </button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content fill-width padding-big">
+                <input id="threshold-slider" class="slider fill-width primary" type="range" min="1" max="10" value="0"
+                    ontouchend="SetPulseThreshold(this.value)" onmouseup="SetPulseThreshold(this.value)">
+            </div>
         </div>
     </div>
 </div>
 
-<div class="card raised">
-    <div class="header">
-        Pulse
-        <div class="right">
-            <button class="raised primary margin-left icon" onclick="ChangePulseAction('stop')">
-                <i class="fas fa-stop"></i>
-            </button>
-            <button class="raised primary margin-left icon" onclick="ChangePulseAction('play')">
-                <i class="fas fa-play"></i>
-            </button>
-            <button class="raised primary margin-left icon" onclick="ChangePulseAction('pause')">
-                <i class="fas fa-pause"></i>
-            </button>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content fill-width padding-big">
-            <input id="threshold-slider" class="slider fill-width primary" type="range" min="1" max="10" value="0" ontouchend="SetPulseThreshold(this.value)" onmouseup="SetPulseThreshold(this.value)">
-        </div>
-    </div>
-</div>
+
 
 <!-- TODO: Card: Light pulse sensibility changer -->
 <!-- TODO: Card: Raspberry CPU/RAM/DISK checker -->
@@ -87,7 +92,7 @@
 <!-- TODO: Dark theme -->
 <!-- TODO: Loading defaults animation -->
 
-<div class="message raised" id="message">
+<div class="message raised hidden" id="message">
     <i></i>
     <span></span>
 </div>

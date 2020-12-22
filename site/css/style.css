@@ -134,7 +134,6 @@ button:focus {
 
 	z-index: 9999;
 
-	visibility: hidden;
 	transition: .2s;
 }
 

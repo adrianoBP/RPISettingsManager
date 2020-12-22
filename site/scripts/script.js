@@ -23,6 +23,9 @@ async function SetDefaults() {
 
     let defaults = await GetCurrentValues();
 
+    if (IsNullOrEmpty(defaults))
+        return;
+
     redSlider.value = defaults.red;
     greenSlider.value = defaults.green;
     blueSlider.value = defaults.blue;
