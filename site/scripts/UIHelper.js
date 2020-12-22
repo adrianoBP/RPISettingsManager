@@ -1,4 +1,5 @@
 // TODO: Add message queue
+// TODO: Clear all messages
 
 function ShowSuccess(message, duration) {
 
@@ -28,20 +29,23 @@ function ShowInfo(message, duration) {
     ShowMessage(message, duration);
 }
 
-function ShowMessage(message, duration = 6000) {
+function ShowMessage(message, duration = 3500) {
 
-    messageElement.classList.remove("hidden");
-    messageElement.style.opacity = 1;
+    ShowElement(messageElement)
     messageText.innerHTML = message;
 
     setTimeout(function () {
 
-        HideMessage();
+        HideElement(messageElement);
     }, duration)
 }
 
-function HideMessage() {
+function ShowElement(element){
+    element.classList.remove("hidden");
+    element.style.opacity = 1;
+}
 
-    messageElement.classList.add("hidden");
-    messageElement.style.opacity = 0;
+function HideElement(element){
+    element.classList.add("hidden");
+    element.style.opacity = 0;
 }

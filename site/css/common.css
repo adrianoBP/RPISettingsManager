@@ -136,4 +136,27 @@
 
 .hidden {
     visibility: hidden;
+    position: absolute;
+}
+
+.container {
+    display: flex;
+
+    top: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.center-items {
+    align-items: center;
 }

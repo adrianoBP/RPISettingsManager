@@ -8,6 +8,7 @@
     integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
     crossorigin="anonymous" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta charset="UTF-8">
 
 <!-- <div class="card raised">
     <div class="header">
@@ -38,7 +39,36 @@
     </div>
 </div> -->
 
-<div class="container">
+<div class="primary-light row center-items hidden" id="login-container">
+
+    <!-- TODO -->
+    <!-- <div class="form-group margin raised">
+        <span>👨‍💻</span>
+        <input type="text" class="form-field" placeholder="username">
+    </div>
+    <div class="form-group margin raised">
+        <span>🔑</span>
+        <input type="text" class="form-field" placeholder="paassword">
+    </div>
+
+    <div class="conent">
+        <button class="raised primary  margin-left icon" onclick="GoogleLogIn()">
+            <i class="fab fa-google"></i>
+        </button>
+        <button class="primary raised">Log In</button>
+        <button class="blue raised">Sign Up</button>
+    </div> -->
+
+    <div class="column center-items fill-width">
+        <button class="raised primary icon" id="google-login-button" onclick="GoogleLogIn()">
+            <i class="fab fa-google"></i>
+        </button>
+    </div>
+
+</div>
+
+<div class="column hidden" id="main-container">
+
     <div class="card raised">
         <div class="header">
             Colour change
@@ -81,9 +111,12 @@
             </div>
         </div>
     </div>
+
+    <div class="column center-items fill-width">
+        <button class="raised red margin-top padding-left padding-right" id="google-login-button" onclick="GoogleLogOut()">Log Out</button>
+    </div>
+
 </div>
-
-
 
 <!-- TODO: Card: Light pulse sensibility changer -->
 <!-- TODO: Card: Raspberry CPU/RAM/DISK checker -->
@@ -94,14 +127,21 @@
 
 <div class="message raised hidden" id="message">
     <i></i>
-    <span></span>
+    <span class="margin-left"></span>
 </div>
 
-<script src="https://livejs.com/live.js"></script>
+<!-- <script src="https://livejs.com/live.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-
 <script src="./scripts/UIElements.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
 <script src="./scripts/UIHelper.js"></script>
+<script src="./scripts/auth.js"></script>
 <script src="./scripts/apiHelper.js"></script>
 <script src="./scripts/script.js"></script>

@@ -1,2 +1,5 @@
 # Python cache files
 *.pyc
+
+# Config files
+*.config

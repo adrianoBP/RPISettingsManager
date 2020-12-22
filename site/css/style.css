@@ -6,8 +6,13 @@
 
 body {
 	font-family: 'Roboto', sans-serif;
-	margin: auto;
 	background-color: #FFF;
+	
+	display: flex;
+	  flex-direction: column;
+	  
+	height: 100%;
+	margin: 0;
 }
 
 /* Button */
@@ -45,10 +50,81 @@ button:focus {
 	outline: 0;
 }
 
+/* Input */
+.form-field {
+	display: block;
+	width: 100%;
+	padding: 0.4rem 1rem;
+	font-size: 95%;
+	font-weight: 300;
+	font-family: inherit;
+	border-radius: 0.3rem;
+	-webkit-appearance: none;
+	color: var(--text-medium);
+	border: 1px solid var(--primary-color);
+	background: var(--input-background);
+  }
+  .form-field::-webkit-input-placeholder {
+	color: var(--text-medium-light);
+  }
+  .form-field::-moz-placeholder {
+	color: var(--text-medium-light);
+  }
+  .form-field:-ms-text-medium-light {
+	color: var(--text-medium-light);
+  }
+  .form-field::-ms-text-medium-light {
+	color: var(--text-medium-light);
+  }
+  .form-field::placeholder {
+	color: var(--text-medium-light);
+  }
+  .form-field:focus {
+	outline: none;
+	border-color: var(--primary-color-darker);
+  }
+  
+  .form-group {
+	position: relative;
+	display: -webkit-box;
+	display: flex;
+	border-radius: 0.3rem;
+  }
+
+  .form-group > span:first-child,
+  .form-group .form-field:first-child {
+	border-radius: 0.3rem 0 0 0.3rem;
+  }
+  .form-group > span:last-child,
+  .form-group .form-field:last-child {
+	border-radius: 0 0.3rem 0.3rem 0;
+  }
+  .form-group > span:not(:first-child),
+  .form-group .form-field:not(:first-child) {
+	margin-left: -1px;
+  }
+
+  .form-group > span {
+	text-align: center;
+	padding: 0.35rem 0.8rem;
+	font-size: 85%;
+	line-height: 2em;
+	background: var(--primary-color-lighter);
+	border: 1px solid var(--primary-color);
+	transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+	color: var(--text-medium);
+  }
+  .form-group:focus-within > span {
+	background: var(--primary-color-light);
+	border-color: var(--primary-color-darker);
+  }
+  
+
 /* Card */
 .card {
 	background-color: #FFF;
 	border-radius: 5px;
+	/* width: 100%; */
 
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -137,25 +213,21 @@ button:focus {
 	transition: .2s;
 }
 
-.message > i {
-	padding-right: 1rem;
-}
-
-.message > span {
-	margin: auto;
-}
-
-
 /* Small Screen */
 @media only screen and (max-width:600px){
 
 	.card {
-		margin: 0.5em;
+		margin: 0.5em auto;
+		width: 90%;
 	}
 	
 	.message {
 		width: 95vw;
 		bottom: 1rem
+	}
+	
+	.form-group {
+		width: 90vw;
 	}
 }
 
@@ -163,12 +235,20 @@ button:focus {
 @media only screen and (min-width:600px){
 
 	.card {
-		max-width: 55vw;
-		margin: 0.5em auto;
+		margin: 1rem auto;
+		width: 55vw;
 	}
 
 	.message {
 		bottom: 2rem;
 		width: 40vw;
 	}
+
+	.form-group {
+		width: 20vw;
+	}
+}
+
+#login-container{
+	height: 100%;
 }

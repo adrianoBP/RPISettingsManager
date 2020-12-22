@@ -3,6 +3,7 @@ const endpointAddress = "https://watzonservices.ddns.net:18200"
 // TODO: Loading
 
 document.addEventListener("DOMContentLoaded", function (event) {
+
     init()
 });
 

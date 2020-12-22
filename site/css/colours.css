@@ -1,6 +1,9 @@
 :root {
+    --primary-color-lighter: #ede4f2;
+    --primary-color-light: #e2baf7;
     --primary-color: #a036d9;
     --primary-color-dark: #8423b8;
+    --primary-color-darker: #60098f;
     --red: #D32F2F;
     --red-dark: #B71C1C;
     --blue: #1565C0;
@@ -11,9 +14,17 @@
     --yellow-dark: #FFC107;
 
     --text-light: #FFF;
+    --text-medium-light: #c7c7c7;
+    --text-medium: #6b6b6b;
     --text-dark: #333;
+
+    --test-one: #eef4ff;
 }
 
+.primary-light {
+    background-color: var(--primary-color-light) !important;
+    color: var(--text-light);
+}
 .primary {
     background-color: var(--primary-color) !important;
     color: var(--text-light);
@@ -55,9 +66,9 @@
     color: var(--text-dark);
 }
 
-button.primary:hover{
+button:hover{
     filter: brightness(90%)
 }
-button.primary:active{
+button:active{
     filter: brightness(80%)
 }
