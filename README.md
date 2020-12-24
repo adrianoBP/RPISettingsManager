@@ -4,6 +4,7 @@ Application to control and monitor some Raspbery PI features
 
 ## Requirements
 - Google accout (Firebase)
+- Spotify Account
 
 ## Configuration
 
@@ -20,13 +21,18 @@ Config file (`site.config`) located under `site`
     "messagingSenderId": "SENDER_ID",
     "appId": "APP_ID",
     "measurementId": "G-MEASUREMENT_ID"
-  }
+  },
+  "SpotifyConfig": {
+        "ClientID": "CLIENT_ID",
+        "ClientSecret": "CLIENT_SECRET"
+    }
 }
 ```
 
 ## Supported features
 - Firebase Login
 - [Control over ws2812b](#ws2812b-managment)
+- Spotify Player (Work In Progress)
 
 ### ws2812b managment
 ##### Colour change: 

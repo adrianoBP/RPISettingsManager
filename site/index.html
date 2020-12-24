@@ -112,6 +112,18 @@
         </div>
     </div>
 
+    <div class="card raised">
+        <div class="header">
+            Spotify
+            <div class="right">
+                <h6 id="spotify-currently-playing" class="hidden">Currently Playing</h6>
+                <button class="raised green margin-left icon" id="spotify-button" onclick="SpotifyLogin()">
+                    <i class="fab fa-spotify fa-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="column center-items fill-width">
         <button class="raised red margin-top padding-left padding-right" id="google-login-button" onclick="GoogleLogOut()">Log Out</button>
     </div>
@@ -141,7 +153,10 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
 
+<script src="./scripts/commonHelper.js"></script>
 <script src="./scripts/UIHelper.js"></script>
+<script src="./scripts/external/googleHelper.js"></script>
+<script src="./scripts/external/spotifyHelper.js"></script>
 <script src="./scripts/auth.js"></script>
 <script src="./scripts/apiHelper.js"></script>
 <script src="./scripts/script.js"></script>

@@ -80,20 +80,23 @@ async function GetCurrentValues() {
     }
 }
 
-function MakeRequest(url, method, body = "") {
+function MakeRequest(url, method, body = "", headers = {}, contentType = "application/json") {
 
     return new Promise((resolve, reject) => {
+
+        headers = {
+            ...headers,
+            ...{ "Content-Type": contentType }
+        }
 
         $.ajax({
             type: method,
             url: url,
-            data: JSON.stringify(body),
-            headers: {
-                "Content-Type": "application/json"
-            }
+            data: IsNullOrEmpty(body) ? "" : contentType.includes("json") ? JSON.stringify(body) : body,
+            headers: headers,
         }).done((data, statusText, xhr) => {
             resolve({
-                data: IsNullOrEmpty(data) ? "" : JSON.parse(data),
+                data: IsNullOrEmpty(data) ? "" : typeof data == "string" ? JSON.parse(data) : data,
                 statusCode: xhr.status
             })
         }).fail((xhr, _, statusText) => {
