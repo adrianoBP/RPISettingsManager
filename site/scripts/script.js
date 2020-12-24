@@ -1,49 +1,25 @@
 const endpointAddress = "https://watzonservices.ddns.net:18200"
 
 // TODO: Loading
-let config, spotifyToken;
+let config, spotifyToken, localStorage;;
 
 document.addEventListener("DOMContentLoaded", async function (event) {
+
+    localStorage = window.localStorage;
 
     config = await GetConfig();
 
     const urlParams = new URLSearchParams(window.location.search);
-    const spotifyCode = urlParams.get('code')
-
-    // TODO: Spotify init
-    // TODO: Save spotify token in local/session storage
-    if (!IsNullOrEmpty(spotifyCode)) {
-
-        try {
-            spotifyToken = (await GetSpotifyToken(spotifyCode)).data.access_token;
-
-            let spotifyPlayingData = await SpotifyCurrentlyPlaying(spotifyToken)
-
-            spotifyCurrentlyPlaying.innerHTML = `${spotifyPlayingData.data.item.name} - ${spotifyPlayingData.data.item.album.artists[0].name}`
-            ShowElement(spotifyCurrentlyPlaying)
-            HideElement(spotifyButton);
-
-        }catch(ex){
-
-            if(!IsNullOrEmpty(ex.data))
-                if(ex.data.error == "invalid_grant"){
-                    console.log("Silent error: unable to retrieve Spotify Token - Page was probably reloaded");
-                    // window.location.replace(window.location.pathname); // Remove all URL parameters
-                }
-                else
-                    ShowError(ex)
-            else
-                ShowError(ex)
-        }
-    }
-
-    init()
+    init(urlParams);
 });
 
-async function init() {
+async function init(urlParams) {
+
+    InitTheme();
 
     SetDefaults()
     InitFirebase(config.FirebaseConfig);
+    InitSpotify(urlParams.get('code'));
 }
 
 function SubmitColor() {
@@ -86,4 +62,16 @@ function GetConfig() {
             reject("Unable to retrieve the configuration");
         });
     })
+}
+
+function Logout(){
+
+    // Spotify
+    localStorage.removeItem("spotifyToken");
+    ShowElement(spotifyLoginButton);
+    HideSpotifyPlayer();
+    StopSpotifyWorkers();
+
+    // Firebase
+    GoogleLogOut();
 }

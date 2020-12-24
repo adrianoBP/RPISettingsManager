@@ -40,12 +40,56 @@ function ShowMessage(message, duration = 3500) {
     }, duration)
 }
 
-function ShowElement(element){
+function ShowElement(element) {
     element.classList.remove("hidden");
     element.style.opacity = 1;
 }
 
-function HideElement(element){
+function HideElement(element) {
     element.classList.add("hidden");
     element.style.opacity = 0;
+}
+
+// Theme
+function InitTheme() {
+
+    const theme = localStorage.getItem("theme");
+
+    if (!IsNullOrEmpty(theme)){
+        ChangeTheme(theme);
+    }
+}
+
+function ChangeTheme(theme) {
+
+    if (theme == "light-theme") {
+        body.classList.replace("dark-theme", "light-theme");
+    } else {
+        body.classList.replace("light-theme", "dark-theme");
+    }
+
+    localStorage.setItem("theme", theme);
+}
+
+// Spotify
+function ShowSpotifyPlayer() {
+    spotifyPreviousButton.classList.remove("hidden");
+    spotifyNextButton.classList.remove("hidden");
+    spotifyStartStopButton.classList.remove("hidden");
+}
+
+function HideSpotifyPlayer() {
+    spotifyPreviousButton.classList.add("hidden");
+    spotifyNextButton.classList.add("hidden");
+    spotifyStartStopButton.classList.add("hidden");
+    spotifyCurrentlyPlayingText.innerHTML = "";
+}
+
+function ChangeSpotifyPlayingIcon(isPlaying = true) {
+
+    if (!isPlaying) {
+        spotifyStartStopIcon.classList.replace("fa-pause", "fa-play")
+    } else {
+        spotifyStartStopIcon.classList.replace("fa-play", "fa-pause")
+    }
 }

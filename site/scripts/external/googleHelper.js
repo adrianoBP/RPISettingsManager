@@ -12,36 +12,34 @@ function InitFirebase(firebaseConfigData){
 
         if (!IsNullOrEmpty(user)) {
 
-            HandleGoogleLoginResult(user)
+            HandleGoogleLoginResult(user);
 
         } else {
-            HideElement(mainContainer)
-            ShowElement(loginContainer)
+            HideElement(mainContainer);
+            ShowElement(loginContainer);
         }
     });
 }
 
 function GoogleLogIn() {
 
-    console.log(loginContainer);
-
     firebase.auth().signInWithPopup(firebaseProvider).then(async function (result) {
 
-        HandleGoogleLoginResult(result.user)
+        HandleGoogleLoginResult(result.user);
 
     }).catch(function (error) {
 
-        ShowError(error.message)
+        ShowError(error.message);
     });
 }
 
 function GoogleLogOut() {
 
     firebase.auth().signOut().then(function () {
-        HideElement(mainContainer)
-        ShowElement(loginContainer)
+        HideElement(mainContainer);
+        ShowElement(loginContainer);
     }).catch(function (error) {
-        ShowError(error.message)
+        ShowError(error.message);
     });
 }
 
@@ -50,11 +48,11 @@ async function HandleGoogleLoginResult(user){
     var data = (await firebaseDB.collection("users").doc(user.uid).get()).data();
 
     if(IsNullOrEmpty(data)){
-        ShowError("User not allowed")
-        GoogleLogOut()
+        ShowError("User not allowed");
+        GoogleLogOut();
     }
     else if (data.allowed) {
-        HideElement(loginContainer)
-        ShowElement(mainContainer)
+        HideElement(loginContainer);
+        ShowElement(mainContainer);
     }
 }

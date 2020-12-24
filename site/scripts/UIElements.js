@@ -1,3 +1,5 @@
+let body = document.body;
+
 // Containers
 let loginContainer = document.getElementById("login-container");
 let mainContainer = document.getElementById("main-container");
@@ -13,5 +15,9 @@ let messageIcon = messageElement.getElementsByTagName("i")[0];
 let messageText = messageElement.getElementsByTagName("span")[0];
 
 // Spotify
-let spotifyButton = document.getElementById("spotify-button");
-let spotifyCurrentlyPlaying = document.getElementById("spotify-currently-playing");
+let spotifyLoginButton = document.getElementById("spotify-login-button");
+let spotifyPreviousButton = document.getElementById("spotify-previous-button");
+let spotifyNextButton = document.getElementById("spotify-next-button");
+let spotifyStartStopButton = document.getElementById("spotify-start-stop-button");
+let spotifyStartStopIcon= document.getElementById("spotify-start-stop-icon");
+let spotifyCurrentlyPlayingText = document.getElementById("spotify-currently-playing");

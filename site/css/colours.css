@@ -13,12 +13,57 @@
     --yellow: #FFD54F;
     --yellow-dark: #FFC107;
 
+    --gray0: #FFF;
+    --gray1: #e1e1e1;
+    --gray2: #d9d9d9;
+    --gray3: #c7c7c7;
+    --gray4: #b6b6b6;
+    --gray5: #a1a1a1;
+    --gray6: #7d7d7d;
+    --gray7: #6b6b6b;
+    --gray8: #4e4e4e;
+    --gray9: #333;
+    --gray10: #2e2e2e;
+    --gray11: #000;
+
     --text-light: #FFF;
     --text-medium-light: #c7c7c7;
     --text-medium: #6b6b6b;
     --text-dark: #333;
 
-    --test-one: #eef4ff;
+    --background-light: #EEF;
+    --background-dark: #2e2e2e;
+
+    --inner-background-light: #FFF;
+    --inner-background-dark: #4e4e4e;
+}
+
+.light-theme {
+    
+    --background: var(--background-light);
+    --inner-background: var(--inner-background-light);
+    --inner-text-color: var(--gray9);
+    --inner-separator: var(--gray1);
+}
+
+.dark-theme {
+
+    --background: var(--background-dark);
+    --inner-background: var(--inner-background-dark);
+    --inner-text-color: var(--gray1);
+    --inner-separator: var(--gray6);
+}
+
+.extreme-light {
+
+    background-color: #FFF;
+    color: #000;
+}
+
+.extreme-dark{
+
+    background-color: #000;
+    color: #FFF;
 }
 
 .primary-light {
