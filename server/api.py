@@ -28,23 +28,23 @@ def getCurrentValues():
 @app.route('/changePulseAction', methods=["POST"])
 def changePulseAction():
 
-    global pulseRunning
+    global stripMoving
     
     req = json.loads(request.data)
 
     if 'action' in req:
 
         if req['action'] == "play":
-            if pulseRunning:
+            if stripMoving:
                 return getFormattedMessage("Pulse already running", 299)
             Thread(target = listen).start()
         elif req['action'] == "stop":
-            pulseRunning = False
+            stripMoving = False
             clearStrip()
-        elif not pulseRunning:
+        elif not stripMoving:
             return getFormattedMessage("Pulse not running", 299)
         elif req['action'] == "pause":
-            pulseRunning = False
+            stripMoving = False
         else:
             return getFormattedMessage("Unrecognized action", 400)
 
@@ -70,28 +70,53 @@ def setPulseThreshold():
 @app.route('/setLedsColour', methods=["POST"])
 def setLedsColour():
 
-    global redHue, greenHue, blueHue, pulseRunning
+    global redHue, greenHue, blueHue, stripMoving
 
     redHue, greenHue, blueHue = getColoursFromRequest(request)
 
-    if not pulseRunning:
+    if not stripMoving:
         changeColour(redHue, greenHue, blueHue)
 
-    if redHue == 0 and greenHue == 0 and blueHue == 0 and pulseRunning:
-        pulseRunning = False
+    if redHue == 0 and greenHue == 0 and blueHue == 0 and stripMoving:
+        stripMoving = False
         clearStrip()
 
     return "", 204
 
-def pulse():
+@app.route('/setLedsFromConfig', methods=["POST"])
+def setLedsFromConfig():
 
-    global strip, pulseRunning
+    global redHue, greenHue, blueHue, stripMoving
+
+    req = json.loads(request.data)
+    if not 'colour' in req:
+        return getFormattedMessage("Missing attribute", 406)
+
+    colour = req['colour'].lower().strip()
+
+    with open('additional.config') as json_file:
+        additionalData = json.load(json_file)
+
+        if colour in additionalData['colorConfigs']:
+            redHue = additionalData['colorConfigs'][colour]['red']
+            greenHue = additionalData['colorConfigs'][colour]['green']
+            blueHue = additionalData['colorConfigs'][colour]['blue']
+
+            if not stripMoving:
+                changeColour(redHue, greenHue, blueHue)
+
+    return "", 204
+
+def moveStrip():
+
+    # TODO: Add move direction
+    global strip, stripMoving
 
     print("Pulsing started")
 
     while True:
 
-        if not pulseRunning:
+        if not stripMoving:
             break
 
         for i in range(LED_COUNT - 1):
@@ -108,15 +133,15 @@ def listen():
 
     print("Listener started")
 
-    global strip, redHue, greenHue, blueHue, FORMAT, CHANNELS, RATE, CHUNK, LED_COUNT, pulseRunning
+    global strip, redHue, greenHue, blueHue, FORMAT, CHANNELS, RATE, CHUNK, LED_COUNT, stripMoving
     
-    pulseRunning = True
+    stripMoving = True
 
     # Make sure that the pulse will be visible
     if redHue == 0 and greenHue == 0 and blueHue == 0:
         redHue = greenHue = blueHue = 32
 
-    pulseThread = Thread(target = pulse)
+    pulseThread = Thread(target = moveStrip)
     pulseThread.start()
 
     p = pyaudio.PyAudio()
@@ -128,7 +153,7 @@ def listen():
 
     while True:
 
-        if not pulseRunning:
+        if not stripMoving:
             break
 
         data = stream.read(CHUNK, exception_on_overflow = False)

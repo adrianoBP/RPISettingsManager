@@ -28,6 +28,9 @@ function SubmitColor() {
 
 function TurnOffLeds() {
     SetLedsColour(0, 0, 0);
+    redSlider.value = 0;
+    greenSlider.value = 0;
+    blueSlider.value = 0;
 }
 
 async function SetDefaults() {
@@ -46,7 +49,6 @@ async function SetDefaults() {
 async function TestAction() {
 
     console.log("TEST");
-
 }
 
 function GetConfig() {

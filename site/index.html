@@ -30,16 +30,7 @@
     </div>
 </div> -->
 
-    <!-- <div class="card raised red">
-    <div class="header">
-        TESTING
-        <div class="right">
-            <button class="raised yellow icon" onclick="TestAction('stop')">
-                <i class="fas fa-code"></i>
-            </button>
-        </div>
-    </div>
-</div> -->
+
 
     <div class="primary-light row center-items hidden" id="login-container">
 
@@ -70,6 +61,17 @@
     </div>
 
     <div class="column hidden" id="main-container">
+
+        <!-- <div class="card raised red">
+            <div class="header">
+                TESTING
+                <div class="right">
+                    <button class="raised yellow icon" onclick="TestAction('stop')">
+                        <i class="fas fa-code"></i>
+                    </button>
+                </div>
+            </div>
+        </div> -->
 
         <div class="card raised">
             <div class="header">
@@ -122,8 +124,8 @@
                     <marquee behaviour="scroll" direction="left" id="spotify-currently-playing" class="margin-left">
                     </marquee>
                     <div class="right row">
-                        <input id="spotify-volume" class="slider green margin-left mobile-hidden" type="range" min="0" max="100"
-                            value="0" ontouchend="SpotifyChangeVolume(this.value)"
+                        <input id="spotify-volume" class="slider green margin-left mobile-hidden" type="range" min="0"
+                            max="100" value="0" ontouchend="SpotifyChangeVolume(this.value)"
                             onmouseup="SpotifyChangeVolume(this.value)">
                         <button class="raised green margin-left icon" id="spotify-login-button"
                             onclick="SpotifyLogin()">
@@ -147,7 +149,8 @@
             <div class="content desktop-hidden" id="spotify-content">
                 <div class="content fill-width padding-big">
                     <input id="spotify-volume-mobile" class="slider fill-width green" type="range" min="0" max="100"
-                        value="0" ontouchend="SpotifyChangeVolume(this.value)" onmouseup="SpotifyChangeVolume(this.value)">
+                        value="0" ontouchend="SpotifyChangeVolume(this.value)"
+                        onmouseup="SpotifyChangeVolume(this.value)">
                 </div>
             </div>
         </div>
@@ -172,6 +175,7 @@
 
 
     <!-- TODO: Card: Raspberry CPU/RAM/DISK checker -->
+    <!-- TODO: Card: Actions -->
 
     <!-- TODO: Loading defaults animation -->
 

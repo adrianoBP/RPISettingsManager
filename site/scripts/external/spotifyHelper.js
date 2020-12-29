@@ -127,7 +127,7 @@ async function SpotifyChangeVolume(volumne) {
 
     spotifyIgnoreNextUpdate = true;
     pointerActive = false;
-    
+
     return await MakeRequest(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volumne}`, "PUT", null, {
         "Authorization": "Bearer " + localStorage.getItem("spotifyToken")
     })
