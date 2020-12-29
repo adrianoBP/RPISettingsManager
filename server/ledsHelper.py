@@ -3,7 +3,7 @@ from threading import Thread
 from rpi_ws281x import *
 
 redHue = greenHue = blueHue = 32
-threshold = 4
+threshold = 50
 
 CHUNK = 32
 FORMAT = pyaudio.paInt16

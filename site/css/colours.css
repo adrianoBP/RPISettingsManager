@@ -44,6 +44,9 @@
     --inner-background: var(--inner-background-light);
     --inner-text-color: var(--gray9);
     --inner-separator: var(--gray1);
+
+    --thumb-background: var(--gray0);
+    --thumb-border: var(--gray4);
 }
 
 .dark-theme {
@@ -52,16 +55,17 @@
     --inner-background: var(--inner-background-dark);
     --inner-text-color: var(--gray1);
     --inner-separator: var(--gray6);
+
+    --thumb-background: var(--gray10);
+    --thumb-border: var(--gray4);
 }
 
 .extreme-light {
-
     background-color: #FFF;
     color: #000;
 }
 
 .extreme-dark{
-
     background-color: #000;
     color: #FFF;
 }

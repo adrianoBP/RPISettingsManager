@@ -1,6 +1,14 @@
 // TODO: Add message queue
 // TODO: Clear all messages
 
+var pointerActive = false;
+document.body.addEventListener('pointerdown', () => {
+    pointerActive = true;
+}, false);
+document.body.addEventListener('pointerup', () => {
+    pointerActive = false;
+}, true);
+
 function ShowSuccess(message, duration) {
 
     messageElement.className = "message raised green";
@@ -45,9 +53,23 @@ function ShowElement(element) {
     element.style.opacity = 1;
 }
 
+function ShowElementsBulk(elements) {
+    for (let element of elements) {
+        element.classList.remove("hidden");
+        element.style.opacity = 1;
+    }
+}
+
 function HideElement(element) {
     element.classList.add("hidden");
     element.style.opacity = 0;
+}
+
+function HideElementsBulk(elements) {
+    for (let element of elements) {
+        element.classList.add("hidden");
+        element.style.opacity = 0;
+    }
 }
 
 // Theme
@@ -55,7 +77,7 @@ function InitTheme() {
 
     const theme = localStorage.getItem("theme");
 
-    if (!IsNullOrEmpty(theme)){
+    if (!IsNullOrEmpty(theme)) {
         ChangeTheme(theme);
     }
 }
@@ -73,15 +95,13 @@ function ChangeTheme(theme) {
 
 // Spotify
 function ShowSpotifyPlayer() {
-    spotifyPreviousButton.classList.remove("hidden");
-    spotifyNextButton.classList.remove("hidden");
-    spotifyStartStopButton.classList.remove("hidden");
+
+    ShowElementsBulk([spotifyContent, spotifyPreviousButton, spotifyNextButton, spotifyStartStopButton, spotifyVolumePercent]);
 }
 
 function HideSpotifyPlayer() {
-    spotifyPreviousButton.classList.add("hidden");
-    spotifyNextButton.classList.add("hidden");
-    spotifyStartStopButton.classList.add("hidden");
+
+    HideElementsBulk([spotifyContent, spotifyPreviousButton, spotifyNextButton, spotifyStartStopButton, spotifyVolumePercent]);
     spotifyCurrentlyPlayingText.innerHTML = "";
 }
 

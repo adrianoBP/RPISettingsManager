@@ -133,7 +133,11 @@ def listen():
 
         data = stream.read(CHUNK, exception_on_overflow = False)
         rms = audioop.rms(data, 2)
-        if(rms/100 > threshold):
+
+        currentRms = int(rms / 15)
+
+        if(currentRms >= threshold):
+
             strip.setPixelColor(LED_COUNT-1, Color(redHue,greenHue,blueHue))
 
     stream.stop_stream()
@@ -141,5 +145,9 @@ def listen():
     p.terminate()
 
     print("Listener stopped")
+
+def maprange(a, b, s):
+	(a1, a2), (b1, b2) = a, b
+	return  int(b1 + ((s - a1) * (b2 - b1) / (a2 - a1)))  
 
 app.run(port=18200, host="0.0.0.0", ssl_context=('/etc/letsencrypt/live/watzonservices.ddns.net/fullchain.pem', '/etc/letsencrypt/live/watzonservices.ddns.net/privkey.pem'))

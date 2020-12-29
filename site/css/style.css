@@ -190,18 +190,22 @@ button:focus {
 	width: 1rem;
 	height: 1rem;
 	border-radius: 0.5rem;
-	background: #fff;
+	background: var(--thumb-background);
     cursor: pointer;
-    border: 1px solid #AAA;
+	border: 1px solid var(--thumb-border);
+	
+	transition: background 500ms ease-in-out
 }
 
 .slider::-moz-range-thumb {
 	width: 1rem;
 	height: 1rem;
 	border-radius: 0.5rem;
-	background: #fff;
+	background: var(--thumb-background);
     cursor: pointer;
-    border: 1px solid #AAA;
+	border: 1px solid var(--thumb-border);
+	
+	transition: background 500ms ease-in-out
 }
 
 /* Message */

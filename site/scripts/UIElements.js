@@ -15,9 +15,12 @@ let messageIcon = messageElement.getElementsByTagName("i")[0];
 let messageText = messageElement.getElementsByTagName("span")[0];
 
 // Spotify
+let spotifyContent = document.getElementById("spotify-content");
 let spotifyLoginButton = document.getElementById("spotify-login-button");
 let spotifyPreviousButton = document.getElementById("spotify-previous-button");
 let spotifyNextButton = document.getElementById("spotify-next-button");
 let spotifyStartStopButton = document.getElementById("spotify-start-stop-button");
 let spotifyStartStopIcon= document.getElementById("spotify-start-stop-icon");
 let spotifyCurrentlyPlayingText = document.getElementById("spotify-currently-playing");
+let spotifyVolumePercent = document.getElementById("spotify-volume");
+let spotifyVolumePercentMobile = document.getElementById("spotify-volume-mobile");

@@ -3,13 +3,16 @@
 // TODO: Show top 5 playlists
 // TODO: Music volume
 
-let spotifyCurrentlyPlayingWorker, spotifyPlaying;
+let spotifyCurrentlyPlayingWorker, spotifyPlaying, spotifyIgnoreNextUpdate = false;
 
 async function InitSpotify(spotifyCode) {
 
     let spotifyToken = localStorage.getItem("spotifyToken");
 
     try {
+
+        HideSpotifyPlayer();
+        ShowElement(spotifyLoginButton);
 
         if (IsNullOrEmpty(spotifyToken)) {  // If there's no token saved
 
@@ -49,7 +52,12 @@ async function SpotifyGetCurrentlyPlayingDetails() {
         let spotifyToken = localStorage.getItem("spotifyToken");
         let spotifyPlayingData = await SpotifyCurrentlyPlaying(spotifyToken);
 
-        spotifyCurrentlyPlayingText.innerHTML = `${spotifyPlayingData.data.item.name} - ${spotifyPlayingData.data.item.album.artists[0].name}`;
+        if (!spotifyIgnoreNextUpdate && !pointerActive) {
+            spotifyVolumePercent.value = spotifyVolumePercentMobile.value = spotifyPlayingData.data.device.volume_percent;
+            spotifyCurrentlyPlayingText.innerHTML = `${spotifyPlayingData.data.item.name} - ${spotifyPlayingData.data.item.album.artists[0].name}`;
+        } else {
+            spotifyIgnoreNextUpdate = false;
+        }
 
         if (spotifyPlayingData.data.is_playing != spotifyPlaying) {
 
@@ -58,8 +66,20 @@ async function SpotifyGetCurrentlyPlayingDetails() {
         }
 
     } catch (ex) {
-        if (!IsNullOrEmpty(spotifyCurrentlyPlayingWorker))
+        if (!IsNullOrEmpty(spotifyCurrentlyPlayingWorker)) {
             clearInterval(spotifyCurrentlyPlayingWorker);
+        }
+
+        if (!IsNullOrEmpty(ex.data)) {
+
+            if (ex.data.error.message == "The access token expired") {
+
+                localStorage.setItem("spotifyToken", "");
+                InitSpotify();
+                // HideSpotifyPlayer();
+                // ShowElement(spotifyLoginButton);
+            }
+        }
     }
 }
 
@@ -100,6 +120,16 @@ async function SpotifyCurrentlyPlaying(token) {
 
     return await MakeRequest("https://api.spotify.com/v1/me/player", "GET", null, {
         "Authorization": "Bearer " + token
+    })
+}
+
+async function SpotifyChangeVolume(volumne) {
+
+    spotifyIgnoreNextUpdate = true;
+    pointerActive = false;
+    
+    return await MakeRequest(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volumne}`, "PUT", null, {
+        "Authorization": "Bearer " + localStorage.getItem("spotifyToken")
     })
 }
 
