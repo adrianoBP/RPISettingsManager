@@ -10,8 +10,8 @@ from apiHelper import *
 app = flask.Flask(__name__)
 CORS(app)
 
-# TODO: Automatic threshold 
-# TODO: Change threshold calculation 
+# TODO: Automatic threshold
+# TODO: Change threshold calculation
 
 @app.route('/getCurrentValues', methods=["POST"])
 def getCurrentValues():
@@ -107,12 +107,60 @@ def setLedsFromConfig():
 
     return "", 204
 
+@app.route('/startRainbow', methods=["POST"])
+def startRainbow():
+
+    global stripMoving
+
+    stripMoving = True
+
+    rainbowThread = Thread(target = rainbowStrip)
+    rainbowThread.start()
+
+    return "", 204
+
+def rainbowStrip():
+
+    global redHue, greenHue, blueHue, strip, stripMoving
+
+    redHue = 255
+    greenHue = blueHue = 0
+
+    print("rain started")
+
+    while True:
+
+        if not stripMoving:
+            break
+
+        if redHue == 255 and greenHue < 255 and blueHue == 0:
+            greenHue += 5
+        elif redHue > 0 and greenHue == 255:
+            redHue -= 5
+        elif greenHue == 255 and blueHue < 255:
+            blueHue += 5
+        elif greenHue > 0 and blueHue == 255:
+            greenHue -= 5
+        elif blueHue == 255 and redHue < 255:
+            redHue += 5
+        elif blueHue > 0 and redHue == 255:
+            blueHue -= 5
+
+        strip.setPixelColor(LED_COUNT-1, Color(redHue,greenHue,blueHue))    
+        strip.show()
+        
+        for i in range(LED_COUNT - 1):
+            pixelColor = strip.getPixelColorRGB(i+1)
+            strip.setPixelColor(i, Color(pixelColor.r, pixelColor.g, pixelColor.b))
+            strip.setPixelColor(i+1, Color(0,0,0))
+
+        strip.show()
+        time.sleep(0.001)
+
 def moveStrip():
 
     # TODO: Add move direction
     global strip, stripMoving
-
-    print("Pulsing started")
 
     while True:
 
@@ -126,8 +174,6 @@ def moveStrip():
 
         strip.show()
         time.sleep(0.001)
-
-    print("Pulsing stopped")
 
 def listen():
 
@@ -164,6 +210,7 @@ def listen():
         if(currentRms >= threshold):
 
             strip.setPixelColor(LED_COUNT-1, Color(redHue,greenHue,blueHue))
+            strip.show()
 
     stream.stop_stream()
     stream.close()
