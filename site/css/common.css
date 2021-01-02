@@ -137,6 +137,8 @@
 .hidden {
     visibility: hidden;
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .container {
@@ -167,6 +169,8 @@
 	.mobile-hidden {
         visibility: hidden;
         position: absolute;
+        top: 0;
+        left: 0;
     }
 }
 
@@ -176,5 +180,7 @@
 	.desktop-hidden {
         visibility: hidden;
         position: absolute;
+        top: 0;
+        left: 0;
     }
 }

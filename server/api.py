@@ -88,6 +88,8 @@ def setLedsFromConfig():
 
     global redHue, greenHue, blueHue, stripMoving
 
+    stripMoving = False
+
     req = json.loads(request.data)
     if not 'colour' in req:
         return getFormattedMessage("Missing attribute", 406)
@@ -112,10 +114,12 @@ def startRainbow():
 
     global stripMoving
 
-    stripMoving = True
+    if not stripMoving:
 
-    rainbowThread = Thread(target = rainbowStrip)
-    rainbowThread.start()
+        stripMoving = True
+
+        rainbowThread = Thread(target = rainbowStrip)
+        rainbowThread.start()
 
     return "", 204
 
