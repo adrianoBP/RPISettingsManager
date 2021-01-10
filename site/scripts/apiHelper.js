@@ -21,6 +21,23 @@ async function SetLedsColour(red, green, blue) {
     }
 }
 
+async function StartRainbow(){
+
+    try {
+        var response = await MakeRequest(`${endpointAddress}/startRainbow`, "POST");
+        HandleResponse(response);
+    } catch (ex) {
+
+        if (!IsNullOrEmpty(ex.statusCode) && !IsNullOrEmpty(ex.data)) {
+            ShowError(ex.data.message)
+        } else if (typeof ex == "string") {
+            ShowError(ex)
+        } else {
+            ShowError("SetPulseThreshold: Unexpected exception")
+        }
+    }
+}
+
 async function ChangePulseAction(action) {
 
     const request = {

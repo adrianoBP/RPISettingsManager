@@ -10,9 +10,6 @@ from apiHelper import *
 app = flask.Flask(__name__)
 CORS(app)
 
-# TODO: Automatic threshold
-# TODO: Change threshold calculation
-
 @app.route('/getCurrentValues', methods=["POST"])
 def getCurrentValues():
 
@@ -114,12 +111,13 @@ def startRainbow():
 
     global stripMoving
 
-    if not stripMoving:
+    if stripMoving:
+        return getFormattedMessage("Rainbow already running", 299)
 
-        stripMoving = True
+    stripMoving = True
 
-        rainbowThread = Thread(target = rainbowStrip)
-        rainbowThread.start()
+    rainbowThread = Thread(target = rainbowStrip)
+    rainbowThread.start()
 
     return "", 204
 

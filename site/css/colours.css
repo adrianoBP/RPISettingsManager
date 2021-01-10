@@ -121,3 +121,38 @@ button:hover{
 button:active{
     filter: brightness(80%)
 }
+
+.rainbow {
+    animation-name: rainbow;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rainbow {
+
+    0% {
+        background-color: #F00; 
+    }
+    17% {
+        background-color: #FF0; 
+    }
+    34% {
+        background-color: #0F0; 
+    }
+    51% {
+        color: black;
+        background-color: #0FF; 
+    }
+    68% {
+        color: white;
+        background-color: #00F; 
+    }
+    85% {
+        color: black;
+        background-color: #F0F; 
+    }
+    100% {
+        background-color: #F00; 
+    }
+    
+}
