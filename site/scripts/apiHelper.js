@@ -21,7 +21,7 @@ async function SetLedsColour(red, green, blue) {
     }
 }
 
-async function StartRainbow(){
+async function StartRainbow() {
 
     try {
         var response = await MakeRequest(`${endpointAddress}/startRainbow`, "POST");
@@ -97,6 +97,23 @@ async function GetCurrentValues() {
     }
 }
 
+async function PowerUpPc() {
+    
+    try {
+        let response = await MakeRequest(`${endpointAddress}/powerUP`, "POST");
+        return response.data;
+    } catch (ex) {
+
+        if (!IsNullOrEmpty(ex.statusCode) && !IsNullOrEmpty(ex.data)) {
+            ShowError(ex.data.message)
+        } else if (typeof ex == "string") {
+            ShowError(ex)
+        } else {
+            ShowError("PowerUpPc: Unexpected exception")
+        }
+    }
+}
+
 function MakeRequest(url, method, body = "", headers = {}, contentType = "application/json") {
 
     return new Promise((resolve, reject) => {
@@ -123,7 +140,6 @@ function MakeRequest(url, method, body = "", headers = {}, contentType = "applic
             });
         });
     })
-
 }
 
 function HandleResponse(response) {

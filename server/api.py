@@ -1,4 +1,4 @@
-import pyaudio, wave, audioop, argparse, time, json, flask
+import pyaudio, wave, audioop, argparse, time, json, flask, requests
 
 from flask import request
 from flask_cors import CORS
@@ -120,6 +120,11 @@ def startRainbow():
     rainbowThread.start()
 
     return "", 204
+
+@app.route('/powerUP', methods=["POST"])
+def powerUP():
+
+    return requests.get('http://192.168.0.102/powerUP').content
 
 def rainbowStrip():
 
